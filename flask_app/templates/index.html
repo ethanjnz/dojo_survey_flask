@@ -14,32 +14,36 @@
 
     <div class="container w-50 p-5 mt-3">
         <h2>Dojo Survey</h2>
-        <form action="/process" method="post">
+
+        <form action="/create" method="post">
             <div class="mb-3">
                 <label for="name" class="form-label">Name:</label>
                 <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="location" class="form-label">Dojo Location:</label>
+                <input type="hidden" name="location" value="none">
                 <select id="location" name="location" class="form-select">
-                    <option value="" disabled selected>-- select A Location --</option>
-                    <option>Chicago</option>
-                    <option>St. Louis</option>
-                    <option>Miami</option>
-                    <option>Colorado</option>
-                    <option>Houston</option>
-                    <option>NYC</option>
+                    <option value="none" disabled selected>-- select A Location --</option>
+                    <option value="Chicago">Chicago</option>
+                    <option value="St. Louis">St. Louis</option>
+                    <option value="Miami">Miami</option>
+                    <option value="Colorado">Colorado</option>
+                    <option value="Houston">Houston</option>
+                    <option value="NYC">NYC</option>
                 </select>
+
             </div>
             <div class="mb-3">
                 <label for="language" class="form-label">Favorite Language:</label>
+                <input type="hidden" name="language" value="none">
                 <select name="language" id="language" class="form-select">
                     <option value="" disabled selected>-- select A Language --</option>
-                    <option>Python</option>
-                    <option>Javascript</option>
-                    <option>Java</option>
-                    <option>C#</option>
-                    <option>C++</option>
+                    <option value="Python">Python</option>
+                    <option value="Javascript">Javascript</option>
+                    <option value="Java">Java</option>
+                    <option value="C#">C#</option>
+                    <option value="C++">C++</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -48,6 +52,13 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        {% with messages = get_flashed_messages() %} <!-- declare a variable called messages -->
+        {% if messages %} <!-- check if there are any messages -->
+        {% for message in messages %} <!-- loop through the messages -->
+        <p>{{message}}</p> <!-- display each message in a paragraph tag -->
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
     </div>
 
 </body>
